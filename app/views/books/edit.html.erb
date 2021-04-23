@@ -1,12 +1,6 @@
-<% if @book.errors.any? %>
-  <%= @book.errors.count %> errors prohibited this book from being saved:
-  <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
-  <%end%>
-<%end%>
-
 <h1>Editing Book</h1>
 <%= form_with model:@book, local:true do |f| %>
+<%= render 'books/error', book:@book %>
   <div class="field">
     <label for="book_title">Title</label>
     <%= f.text_field :title %>
@@ -16,7 +10,7 @@
     <%= f.text_area :body %>
   </div>
   <div class="actions">
-    <%= f.submit 'Update Book' %>
+    <input type="submit" value="Update Book">
   </div>
 <%end%>
 <%= link_to 'Show', book_path(@book.id) %>
